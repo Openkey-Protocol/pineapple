@@ -1,4 +1,3 @@
-import { capture } from '@snapshot-labs/snapshot-sentry';
 import { MAX } from '../utils';
 import { get, set } from '../aws';
 
@@ -25,7 +24,7 @@ export default async function useProxyCache(req, res, next) {
           await set(cid, body);
         }
       } catch (e) {
-        capture(e);
+        console.error(e);
       }
     }
 

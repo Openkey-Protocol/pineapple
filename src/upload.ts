@@ -2,7 +2,6 @@ import fs from 'fs';
 import express from 'express';
 import multer from 'multer';
 import sharp from 'sharp';
-import { capture } from '@snapshot-labs/snapshot-sentry';
 import { rpcError, rpcSuccess } from './utils';
 import uploadToProviders from './providers/';
 import { IMAGE_PROVIDERS } from './providers/utils';
@@ -47,7 +46,7 @@ router.post('/upload', async (req, res) => {
         return rpcError(res, 415, 'Unsupported file type');
       }
 
-      capture(e);
+      console.error(e);
       return rpcError(res, 500, e);
     } finally {
       if (req.file) {
